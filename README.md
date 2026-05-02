@@ -5,7 +5,7 @@ file, run the pipeline, and get back a classified catalog with reason codes and 
 provenance record.
 
 This is the community software companion to the
-[Torlakcık Catalog](https://github.com/torlakciksahin/gaia-seti-avoidance).
+[Torlakcik Catalog](https://github.com/torlakciksahin/gaia-seti-avoidance).
 The paper-specific repo (`gaia-seti-avoidance`) has the exact analysis, figures,
 cross-matches, and sensitivity tests from the publication. This package
 (`stellar-avoidance`) is the reusable, catalog-agnostic version -- same R1-R7 logic,
@@ -26,7 +26,7 @@ Requires Python >= 3.9, numpy, pandas, astropy, pyyaml.
 ### CLI
 
 ```bash
-# Default Torlakcık criteria (R1-R7) on a Gaia DR3 catalog
+# Default Torlakcik criteria (R1-R7) on a Gaia DR3 catalog
 stellar-avoidance run gaia_dr3.fits
 
 # Custom config
@@ -188,11 +188,11 @@ MIT
 
 If you use this in your research:
 
-> Torlakcık, Ş. (2026). "Where Not to Look: A Parametric Avoidance Model for SETI Target Selection." *TBD*.
+> Torlakcik, S. (2026). "Where Not to Look: A Parametric Avoidance Model for SETI Target Selection." *TBD*.
 
 ```bibtex
 @article{torlakcik2026,
-  author  = {Torlakc{\i}k, {\c{S}}ahin},
+  author  = {Torlakcik, Sahin},
   title   = {Where Not to Look: A Parametric Avoidance Model for SETI Target Selection},
   journal = {TBD},
   year    = {2026}
