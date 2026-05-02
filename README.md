@@ -188,13 +188,13 @@ MIT
 
 If you use this in your research:
 
-> Torlakcık, Ş. (2026). "Where Not to Look: A Parametric Avoidance Model for SETI Target Selection." *PASP*.
+> Torlakcık, Ş. (2026). "Where Not to Look: A Parametric Avoidance Model for SETI Target Selection." *TBD*.
 
 ```bibtex
 @article{torlakcik2026,
   author  = {Torlakc{\i}k, {\c{S}}ahin},
   title   = {Where Not to Look: A Parametric Avoidance Model for SETI Target Selection},
-  journal = {Publications of the Astronomical Society of the Pacific},
+  journal = {TBD},
   year    = {2026}
 }
 ```
