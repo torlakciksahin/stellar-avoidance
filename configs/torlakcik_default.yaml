@@ -1,0 +1,112 @@
+# Torlakcık Catalog Default Configuration
+#
+# Reproduces the R1-R7 avoidance criteria from:
+#   Torlakcık (2026), "Where Not to Look: A Parametric Avoidance Model
+#   for SETI Target Selection"
+#
+# Modify thresholds or add/remove criteria to customize for your own catalog.
+
+metadata:
+  name: "Torlakcık Catalog"
+  version: "1.0.0"
+  author: "Şahin Torlakcık"
+  description: "Default SETI target avoidance criteria (R1-R7)"
+  reference: "Torlakcık (2026), Where Not to Look"
+
+teff_column: "teff_gspphot"
+
+spectral_boundaries:
+  O: 30000
+  B: 10000
+  A: 7500
+  F0-F4: 6600
+  F5-F9: 6000
+  G: 5200
+  K: 3700
+  # M: everything below 3700 K
+
+# Each criterion: code, name, column, operator, threshold
+# Set active: false to disable without removing.
+# Composite criteria use sub_criteria (logical OR).
+# m_dwarf_only restricts a criterion to M-type stars only.
+
+criteria:
+  - code: R1
+    name: "High stellar mass"
+    description: >
+      Stars above 1.5 Msun have main-sequence lifetimes shorter than ~2 Gyr,
+      limiting time for complex life (Kippenhahn & Weigert 1990; Turnbull 2003).
+    column: "mass_flame_spec"
+    operator: gt
+    threshold: 1.5
+    active: true
+
+  - code: R2
+    name: "Young stellar age (upper bound)"
+    description: >
+      Complex life needed ~3-4 Gyr on Earth. Uses the age upper bound
+      to account for Gaia DR3 age uncertainties, retaining ~355k stars
+      that a hard cut on point estimates would discard.
+    column: "age_flame_spec_upper"
+    operator: lt
+    threshold: 3.0
+    active: true
+
+  - code: R3
+    name: "Unfavorable spectral type"
+    description: >
+      O/B lifetimes < 1 Gyr; A and early-F stars have hostile UV
+      environments (Scalo et al. 2007).
+    column: "spectral_type"
+    operator: in
+    threshold: ["O", "B", "A", "F0-F4"]
+    active: true
+
+  - code: R4
+    name: "Low metallicity"
+    description: >
+      Giant planet formation drops below [Fe/H] = -0.4 (Fischer & Valenti
+      2005; Johnson et al. 2010).
+    column: "mh_gspphot"
+    operator: lt
+    threshold: -0.4
+    active: true
+
+  - code: R5
+    name: "Stellar multiplicity"
+    description: >
+      Non-single stars (NSS >= 1) have gravitationally perturbed systems
+      that can destabilize planetary orbits (Holman & Wiegert 1999).
+    column: "non_single_star"
+    operator: ge
+    threshold: 1
+    active: true
+
+  - code: R6
+    name: "Photometric variability"
+    description: >
+      Variable stellar irradiance affects climate stability and may
+      erode atmospheric biosignatures (Kasting et al. 1993).
+      Fails if EITHER sub-criterion is met.
+    sub_criteria:
+      - column: "range_mag_g_fov"
+        operator: gt
+        threshold: 0.01
+      - column: "phot_variable_flag"
+        operator: eq
+        threshold: "VARIABLE"
+    active: true
+
+  - code: R7
+    name: "Active M dwarf"
+    description: >
+      Chromospherically active M dwarfs produce frequent flares that
+      erode planetary atmospheres (France et al. 2016; Howard et al. 2018).
+      Quiet M dwarfs are retained (Shields et al. 2016).
+    sub_criteria:
+      - column: "in_vari_rotation_modulation"
+        operator: is_true
+      - column: "in_vari_short_timescale"
+        operator: is_true
+    active: true
+    m_dwarf_only: true
