@@ -179,7 +179,7 @@ Uses synthetic data, no Gaia DR3 file needed.
 ## Related
 
 - [gaia-seti-avoidance](https://github.com/torlakciksahin/gaia-seti-avoidance) -- Paper-specific pipeline: Gaia DR3 cross-matching, Isaacson BL comparison, sensitivity analysis, and publication figures.
-
+- Torlakcik Catalog [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19956677.svg)](https://doi.org/10.5281/zenodo.19956677) -- Full Catalog
 ## License
 
 MIT
