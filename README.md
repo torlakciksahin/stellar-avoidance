@@ -1,5 +1,8 @@
 # stellar-avoidance
 
+> "There is a great satisfaction in building good tools for other people to use."
+> — Freeman Dyson
+
 SETI target avoidance for stellar catalogs. Define your exclusion criteria in a YAML
 file, run the pipeline, and get back a classified catalog with reason codes and a
 provenance record.
